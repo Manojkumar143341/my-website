@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Paragraph</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3f4e8c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Submit Your Paragraph</h1>
+
+        <!-- Form for submitting new user name and motivational paragraph -->
+        <div class="form-section">
+            <input id="userName" type="text" placeholder="Enter your name..." />
+            <textarea id="paragraphInput" placeholder="Enter your motivational paragraph here..."></textarea>
+            <button onclick="addParagraph()">Add Paragraph</button>
+        </div>
+    </div>
+
+    <script>
+        function addParagraph() {
+            const userName = document.getElementById('userName').value;
+            const paragraphInput = document.getElementById('paragraphInput').value;
+
+            if (userName && paragraphInput) {
+                // Store the new paragraph in localStorage
+                const newParagraph = { userName, paragraphInput };
+                let paragraphs = JSON.parse(localStorage.getItem('paragraphs')) || [];
+                paragraphs.push(newParagraph);
+                localStorage.setItem('paragraphs', JSON.stringify(paragraphs));
+
+                // Redirect to the display page
+                window.location.href = 'display.html';
+            } else {
+                alert("Please enter both your name and a motivational paragraph.");
+            }
+        }
+    </script>
+
+</body>
+</html>

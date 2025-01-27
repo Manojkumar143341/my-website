@@ -1,0 +1,117 @@
+* {
+   margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+
+  header {
+    background-color: #ffffff;
+  }
+
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+  }
+
+  nav ul li {
+    padding: 10px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: rgb(174, 102, 102);
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  nav ul li a.active {
+    color: #f39c12;
+  }
+
+  nav ul li a:hover {
+    color: #f39c12;
+    transform: scale(1.1);
+  }
+
+  section {
+    padding: 100px 20px;
+    height: 100vh;
+  }
+
+  section:nth-child(even) {
+    background-color: #64706f;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+  .farm-section {
+    margin-bottom: 20px;
+    height: 500px;
+}
+.cantainer {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.paragraph-box {
+  background-color: #e3f2fd;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 3px solid #bec9d3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  color: #333;
+  position: relative;
+}
+.paragraph-box::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background-color: #b5bfc8;
+  border-radius: 5px;
+}
+.paragraph-box p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+.actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.actions button {
+  padding: 10px 20px;
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.actions button:hover {
+  background-color: #3f4e8c;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Navbar with Hover Effect</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+
+  <header>
+    <nav id="navbar">
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="one.html">ADD</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <br><br>
+
+  <div class="cantainer">
+    <h1>TRENDINGS</h1>
+
+    <!-- Display all paragraphs -->
+    <div id="paragraphsContainer"></div>
+</div>
+
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav ul li a');
+
+      let currentSection = '';
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (window.scrollY >= sectionTop - sectionHeight / 3) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(currentSection)) {
+          link.classList.add('active');
+        }
+      });
+    });
+      // Get stored paragraphs from localStorage
+      const paragraphs = JSON.parse(localStorage.getItem('paragraphs')) || [];
+        const paragraphsContainer = document.getElementById('paragraphsContainer');
+
+        if (paragraphs.length === 0) {
+            paragraphsContainer.innerHTML = "<p>No paragraphs to display. Please submit one.</p>";
+        } else {
+            // Display all paragraphs
+            paragraphs.forEach(para => {
+                const paragraphBox = document.createElement('div');
+                paragraphBox.classList.add('paragraph-box');
+
+                const userNameElement = document.createElement('div');
+                userNameElement.classList.add('user-name');
+                userNameElement.innerText = para.userName;
+
+                const paragraphText = document.createElement('p');
+                paragraphText.innerText = para.paragraphInput;
+
+                // Create actions section with Like, Share, and Follow buttons
+                const actions = document.createElement('div');
+                actions.classList.add('actions');
+
+                const likeButton = document.createElement('button');
+                likeButton.innerText = 'Like';
+                likeButton.onclick = function() {
+                    alert('You liked this paragraph!');
+                };
+
+                const shareButton = document.createElement('button');
+                shareButton.innerText = 'Share';
+                shareButton.onclick = function() {
+                    alert('You shared this paragraph!');
+                };
+
+                const followButton = document.createElement('button');
+                followButton.innerText = 'Follow';
+                followButton.onclick = function() {
+                    alert('You followed the author!');
+                };
+
+                actions.appendChild(likeButton);
+                actions.appendChild(shareButton);
+                actions.appendChild(followButton);
+
+                // Append elements to paragraph box
+                paragraphBox.appendChild(userNameElement);
+                paragraphBox.appendChild(paragraphText);
+                paragraphBox.appendChild(actions);
+
+                // Append new paragraph box to the container
+                paragraphsContainer.appendChild(paragraphBox);
+            });
+        }
+  </script>
+</body>
+</html>
+
+
+
+
+
+

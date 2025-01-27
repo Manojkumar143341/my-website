@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Paragraphs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .cantainer {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .paragraph-box {
+            background-color: #e3f2fd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 3px solid #1e88e5;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            color: #333;
+            position: relative;
+        }
+        .paragraph-box::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background-color: #1e88e5;
+            border-radius: 5px;
+        }
+        .paragraph-box p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        .user-name {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: bold;
+            color: #1e88e5;
+            font-size: 18px;
+        }
+        .actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .actions button {
+            padding: 10px 20px;
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .actions button:hover {
+            background-color: #3f4e8c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Paragraphs Submitted</h1>
+
+        <!-- Display all paragraphs -->
+        <div id="paragraphsContainer"></div>
+    </div>
+
+    <script>
+        // Get stored paragraphs from localStorage
+        const paragraphs = JSON.parse(localStorage.getItem('paragraphs')) || [];
+        const paragraphsContainer = document.getElementById('paragraphsContainer');
+
+        if (paragraphs.length === 0) {
+            paragraphsContainer.innerHTML = "<p>No paragraphs to display. Please submit one.</p>";
+        } else {
+            // Display all paragraphs
+            paragraphs.forEach(para => {
+                const paragraphBox = document.createElement('div');
+                paragraphBox.classList.add('paragraph-box');
+
+                const userNameElement = document.createElement('div');
+                userNameElement.classList.add('user-name');
+                userNameElement.innerText = para.userName;
+
+                const paragraphText = document.createElement('p');
+                paragraphText.innerText = para.paragraphInput;
+
+                // Create actions section with Like, Share, and Follow buttons
+                const actions = document.createElement('div');
+                actions.classList.add('actions');
+
+                const likeButton = document.createElement('button');
+                likeButton.innerText = 'Like';
+                likeButton.onclick = function() {
+                    alert('You liked this paragraph!');
+                };
+
+                const shareButton = document.createElement('button');
+                shareButton.innerText = 'Share';
+                shareButton.onclick = function() {
+                    alert('You shared this paragraph!');
+                };
+
+                const followButton = document.createElement('button');
+                followButton.innerText = 'Follow';
+                followButton.onclick = function() {
+                    alert('You followed the author!');
+                };
+
+                actions.appendChild(likeButton);
+                actions.appendChild(shareButton);
+                actions.appendChild(followButton);
+
+                // Append elements to paragraph box
+                paragraphBox.appendChild(userNameElement);
+                paragraphBox.appendChild(paragraphText);
+                paragraphBox.appendChild(actions);
+
+                // Append new paragraph box to the container
+                paragraphsContainer.appendChild(paragraphBox);
+            });
+        }
+    </script>
+
+</body>
+</html>
